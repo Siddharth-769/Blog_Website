@@ -12,10 +12,10 @@ from typing import List
 from functools import wraps
 from werkzeug.security import generate_password_hash, check_password_hash
 from forms import CreatePostForm, RegisterForm, LoginForm, CommentForm
-
+import os
 # App Configuration
 app = Flask(__name__)
-app.config['SECRET_KEY'] = '8BYkEfBA6O6dohdfsgfhaneWlSihBXox7C0sKR6b'
+app.config['SECRET_KEY'] = os.environ.get("secreat_key")
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///posts.db'
 ckeditor = CKEditor(app)
 Bootstrap5(app)
@@ -256,4 +256,4 @@ def forbidden(error):
     return render_template("403.html"), 403
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5000)
+    app.run(debug=False, port=5000)

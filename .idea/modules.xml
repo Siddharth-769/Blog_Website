@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../FlaskAuthenticationPractice/.idea/FlaskAuthenticationPractice.iml" filepath="$PROJECT_DIR$/../FlaskAuthenticationPractice/.idea/FlaskAuthenticationPractice.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../day-68-starting-files-flask-auth/.idea/day-68-starting-files-flask-auth.iml" filepath="$PROJECT_DIR$/../day-68-starting-files-flask-auth/.idea/day-68-starting-files-flask-auth.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/day-69-starting-files-blog-with-users.iml" filepath="$PROJECT_DIR$/.idea/day-69-starting-files-blog-with-users.iml" />
+    </modules>
+  </component>
+</project>

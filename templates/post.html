@@ -1,0 +1,70 @@
+{% include "header.html" %}
+{% from "bootstrap5/form.html" import render_form %}
+
+<!-- Page Header -->
+<header class="masthead" style="background-image: url('{{ post.img_url }}')">
+  <div class="container position-relative px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+      <div class="col-md-10 col-lg-8 col-xl-7">
+        <div class="post-heading text-center">
+          <h1>{{ post.title }}</h1>
+          <h2 class="subheading">{{ post.subtitle }}</h2>
+          <span class="meta">
+            Posted by <a href="#">{{ post.author.username }}</a> on {{ post.date }}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Post Content -->
+<article>
+  <div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+      <div class="col-md-10 col-lg-8 col-xl-7">
+        <!-- Post Body -->
+        <div class="post-body">
+          {{ post.body|safe }}
+        </div>
+
+        <!-- Admin Edit Button -->
+        {% if user_id == '1' %}
+          <div class="d-flex justify-content-end my-4">
+            <a class="btn btn-primary" href="{{ url_for('edit_post', post_id=post.id) }}">Edit Post</a>
+          </div>
+        {% endif %}
+
+        <!-- Comment Section -->
+        <hr />
+        <h3 class="my-4">Comments</h3>
+
+        <!-- Comment Form -->
+        {{ render_form(form, button_map={"submit": "primary"}) }}
+
+        <!-- Comment List -->
+        <div class="comment-section mt-4">
+          <ul class="comment-list">
+            {% for comment in post.comments %}
+              <li class="comment-item my-3">
+                <div class="commenter">
+                  <img src="{{ comment.author.email | gravatar }}" alt="Gravatar" class="rounded-circle me-2" />
+                  <strong>{{ comment.author.username }}</strong>
+                </div>
+                <div class="comment-text mt-2">
+                  <p>{{ comment.text|safe }}</p>
+                  <span class="text-muted">{{ comment.author.username }}</span>
+                  {% if current_user.is_authenticated and current_user.id == comment.author_id or current_user.id==1%}
+                    <a class="text-danger ms-2" href="{{ url_for('delete_comment', comment_id=comment.id, post_id=post.id) }}">Delete</a>
+                  {% endif %}
+                </div>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+{% include "footer.html" %}

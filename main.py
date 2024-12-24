@@ -16,7 +16,7 @@ import os
 # App Configuration
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get("secreat_key")
-app.config['SQLALCHEMY_DATABASE_URI'] = ("DB_URI",'sqlite:///posts.db')
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DB_URI",'sqlite:///posts.db')
 ckeditor = CKEditor(app)
 Bootstrap5(app)
 
